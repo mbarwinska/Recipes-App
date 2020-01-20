@@ -1,8 +1,6 @@
 package com.spring.RecipeProject.domain;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -32,16 +30,16 @@ public class Recipe {
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
     @ManyToMany
-    @JoinTable(name="recipe_category",
-    inverseJoinColumns = @JoinColumn(name = "category_id"))
+    @JoinTable(name = "recipe_category",
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
-    public void setNotes(Notes notes){
+    public void setNotes(Notes notes) {
         this.notes = notes;
         notes.setRecipe(this);
     }
 
-    public Recipe addIngredient(Ingredient ingredient){
+    public Recipe addIngredient(Ingredient ingredient) {
         ingredient.setRecipe(this);
         this.ingredients.add(ingredient);
         return this;
